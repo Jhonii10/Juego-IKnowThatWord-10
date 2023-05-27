@@ -8,18 +8,18 @@ import java.awt.*;
  * @autor Carlos Felipe Montoya carlos.felipe.montoya@correounivalle.edu.co
  * @version v.1.0.0 date:21/03/2023
  */
-public class GUI extends JFrame {
+public class InterfazGraficaDeUsuario extends JFrame {
 
     private Header headerProject;
 
     /**
      * Constructor of GUI class
      */
-    public GUI(){
+    public InterfazGraficaDeUsuario(){
         initGUI();
 
         //Default JFrame configuration
-        this.setTitle("I Know Than Word");
+        this.setTitle("I Know Than Wordgit ");
         this.setSize(600,400);
         //this.pack();
         this.setResizable(true);
@@ -48,7 +48,7 @@ public class GUI extends JFrame {
      */
     public static void main(String[] args){
         EventQueue.invokeLater(() -> {
-            GUI miProjectGUI = new GUI();
+            InterfazGraficaDeUsuario miProjectGUI = new InterfazGraficaDeUsuario();
         });
     }
 
