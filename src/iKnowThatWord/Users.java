@@ -74,6 +74,32 @@ public class Users {
 
     /*----------------------------------------------------------------------------------------------------------------*/
 
+    /**
+     * This function gets the user level.
+     * @return user level
+     */
 
+    public int getNivelUsuario() {
+        for (unUsuario = 0; unUsuario < usuarios.size(); unUsuario++) {
+            if (usuarios.get(unUsuario).equals(nombreUsuario)) {
+                nivelUsuario = Integer.parseInt(usuarios.get(unUsuario+1));
+                break;
+            } else {
+                nivelUsuario = 1;
+            }
+        }
+        return nivelUsuario;
+    }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    /**
+     * This function gets the user name.
+     * @return user level
+     */
+
+    public String getUsuarioIngresado() {
+        return nombreUsuario;
+    }
 
 }
