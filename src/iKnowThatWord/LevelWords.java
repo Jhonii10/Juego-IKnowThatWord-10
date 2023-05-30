@@ -45,5 +45,14 @@ public class LevelWords {
         return palabrasAMemorizar;
     }
 
+/**
+     * This method gets the number of words that the level
+     * @return the number of words that the level
+     */
+
+     public int getCantidadPalabrasDelNivel() {
+        return palabrasDelNivel.size();
+    }
+
 
 }
