@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class ModelIKnowThatWord {
 
+    private LevelWords words;
+    private Users users;
+    private String theUser;
+
     private int conteoErrores, conteoAciertos, suNivel;
     private boolean ganar;
     private ArrayList<String> palabrasDelNivel, palabrasAMemorizar;
