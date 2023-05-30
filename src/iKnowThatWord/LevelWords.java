@@ -16,5 +16,16 @@ public class LevelWords {
         todasLasPalabras = vocabulary.getVocabulary();
         palabrasDelNivel = new ArrayList<>();
         palabrasAMemorizar = new ArrayList<>();
-    
+    }
+ /**
+     * This function gets a random word from vocabulary.
+     * @return a word
+     */
+
+     public ArrayList<String> getPalabrasDelNivel(int cantidadPalabras){
+        palabrasDelNivel.clear();
+        palabrasDelNivel.addAll(todasLasPalabras.subList(0, cantidadPalabras));
+        return palabrasDelNivel;
+    }
+
 }
