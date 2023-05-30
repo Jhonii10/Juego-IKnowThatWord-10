@@ -110,7 +110,7 @@ public class ModelIKnowThatWord {
  * This function calls the pedirDatos functions of the Model class to request the name of the player in the GUI
  */
  public void pedirDatos(){
-    Users.pedirDatos();
+    user.pedirDatos();
     detectNewOrOldUser();
 }
 /**
@@ -118,7 +118,7 @@ public class ModelIKnowThatWord {
 */
 
  public void registrarUsuario(){
-    usuario.registrarUsuario(suNivel);
+    user.registrarUsuario(suNivel);
 }
 
 /**
@@ -126,8 +126,8 @@ public class ModelIKnowThatWord {
 */
 
  public void detectNewOrOldUser(){
-    elUsuario = usuario.getUsuarioIngresado();
-    suNivel = usuario.getNivelUsuario();
+    theUser = user.getUsuarioIngresado();
+    suNivel = user.getNivelUsuario();
 }
 
 /**
@@ -153,8 +153,18 @@ public class ModelIKnowThatWord {
 */
 
  public int getCantidadPalabrasDelNivel() {
-    return palabras.getCantidadPalabrasDelNivel();
+    return words.getCantidadPalabrasDelNivel();
 }
+
+/**
+ * This method returns the number of the errors that were made
+* @return the number of the errors
+ */
+
+public int getErrores() {
+    return conteoErrores;
+}
+
     
 
 }
