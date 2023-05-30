@@ -73,6 +73,35 @@ public class ModelIKnowThatWord {
             conteoErrores++;
         }
     }
+     /**
+      * * This function level ups user and determines if the user wins or loses
+       */
+      
+    public int subirNivelUsuario(int totalPalabras, int palabrasAcertadas) {
+        double porcentajeMinimo = 0.7 + (suNivel - 1) * 0.05;
+        double porcentajeNivel10 = 1.0;
+
+    if (suNivel == 10) {
+        if (palabrasAcertadas == totalPalabras) {
+            ganar = true;
+        } else {
+            ganar = false;
+        }
+    } else {
+        if (palabrasAcertadas >= (totalPalabras * porcentajeMinimo)) {
+            suNivel++;
+            ganar = true;
+        } else {
+            suNivel = suNivel;
+            ganar = false;
+        }
+    }
+
+    return suNivel;
+}
+    
+
+    
     
 
 }
