@@ -130,6 +130,15 @@ public class ModelIKnowThatWord {
     suNivel = usuario.getNivelUsuario();
 }
 
+/**
+* This function restablish the point conters
+*/
+
+ public void restartPoints() {
+    conteoAciertos=0;
+    conteoErrores=0;
+}
+
 
     
     
