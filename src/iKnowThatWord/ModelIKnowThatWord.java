@@ -77,7 +77,7 @@ public class ModelIKnowThatWord {
       * * This function level ups user and determines if the user wins or loses
        */
       
-    public int subirNivelUsuario(int totalPalabras, int palabrasAcertadas) {
+     public int subirNivelUsuario(int totalPalabras, int palabrasAcertadas) {
         double porcentajeMinimo = 0.7 + (suNivel - 1) * 0.05;
         double porcentajeNivel10 = 1.0;
 
@@ -102,7 +102,8 @@ public class ModelIKnowThatWord {
 /**
  * this function counts errors
  */
-public void noAnswer() {
+
+ public void noAnswer(){
     conteoErrores++;
 } 
 /**
@@ -112,14 +113,21 @@ public void noAnswer() {
     Users.pedirDatos();
     detectNewOrOldUser();
 }
-
 /**
- * This function saves the information of a new user.
- */
+* This function saves the information of a new user.
+*/
 
  public void registrarUsuario(){
     usuario.registrarUsuario(suNivel);
-   
+}
+
+/**
+* This function detects if the player has already played or not
+*/
+
+ public void detectNewOrOldUser(){
+    elUsuario = usuario.getUsuarioIngresado();
+    suNivel = usuario.getNivelUsuario();
 }
 
 
