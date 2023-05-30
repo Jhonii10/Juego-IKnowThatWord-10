@@ -5,25 +5,75 @@ import java.util.ArrayList;
 public class ModelIKnowThatWord {
 
     private LevelWords words;
-    private Users users;
+    private User user;
     private String theUser;
 
     private int conteoErrores, conteoAciertos, suNivel;
     private boolean ganar;
-    private ArrayList<String> palabrasDelNivel, palabrasAMemorizar;
+    private ArrayList<String> LevelWords, palabrasAMemorizar;
 
 
     /**
      * Constructor
      * */
     public ModelIKnowThatWord(){
+        words = new LevelWords();
+        user = new User();
         conteoErrores = 0;
         conteoAciertos = 0;
-        suNivel = 0;
-        palabrasDelNivel = new ArrayList<String>();
+        suNivel = user.getNivelUser();
+        levelWords = new ArrayList<String>();
         palabrasAMemorizar = new ArrayList<String>();
         ganar = false;
     }
+
+    /**
+     * This function show the words of the level that is indicated
+     * @param nivel
+     */
+
+     public void palabrasPorNivel(int nivel) {
+        if (nivel >= 1 && nivel <= 10) {
+            int palabrasTotales = nivel * 20;
+            int palabrasMemorizar = palabrasTotales / 2;
+            levelWords = words.getLevelWords(palabrasTotales);
+            palabrasAMemorizar = words.palabrasAMemorizar(palabrasMemorizar);
+        }
+    }
+
+    /**
+     * This function checks whether or not it came out in the list of words to be memorized.
+     * @param word
+     */
+
+     public void validarPalabra(String word, boolean respuestaAfirmativa) {
+        boolean correcta = false;
+        int flag = 0;
+        
+        if (respuestaAfirmativa) {
+            for (flag = 0; flag < palabrasAMemorizar.size(); flag++) {
+                if (palabrasAMemorizar.get(flag).equals(word)) {
+                    correcta = true;
+                    break; // Se encontró la palabra, se puede salir del bucle
+                }
+            }
+        } else {
+            correcta = true;
+            for (flag = 0; flag < palabrasAMemorizar.size(); flag++) {
+                if (palabrasAMemorizar.get(flag).equals(word)) {
+                    correcta = false;
+                    break; // Se encontró la palabra, se puede salir del bucle
+                }
+            }
+        }
+        
+        if (correcta) {
+            conteoAciertos++;
+        } else {
+            conteoErrores++;
+        }
+    }
+    
 
 }
 
