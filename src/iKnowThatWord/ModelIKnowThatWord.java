@@ -147,7 +147,14 @@ public class ModelIKnowThatWord {
  public int getSuNivel() {
     return suNivel;
 }
-    
+/**
+* This method returns the number of words that the level
+* @return the number of words that the level
+*/
+
+ public int getCantidadPalabrasDelNivel() {
+    return palabras.getCantidadPalabrasDelNivel();
+}
     
 
 }
