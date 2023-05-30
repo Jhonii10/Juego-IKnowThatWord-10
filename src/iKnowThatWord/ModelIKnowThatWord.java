@@ -10,7 +10,7 @@ public class ModelIKnowThatWord {
 
     private int conteoErrores, conteoAciertos, suNivel;
     private boolean ganar;
-    private ArrayList<String> LevelWords, palabrasAMemorizar;
+    private ArrayList<String> levelWords, palabrasAMemorizar;
 
 
     /**
@@ -172,7 +172,6 @@ public class ModelIKnowThatWord {
         return conteoAciertos;
     }
 
-
     /**
      * This method gets the ganar value
      * @return ganar
@@ -181,7 +180,25 @@ public class ModelIKnowThatWord {
     public boolean isGanar() {
         return ganar;
     }
+/**
+     * This function returns all words in the level
+     * @return an array with the words
+     */
 
+     public ArrayList<String> getLevelWords() {
+        return levelWords;
+    }
+
+    //---------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function returns only the words to be menorized from the level
+     * @return an array with the words
+     */
+
+    public ArrayList<String> getPalabrasAMemorizar() {
+        return palabrasAMemorizar;
+    }
     
 
 }
