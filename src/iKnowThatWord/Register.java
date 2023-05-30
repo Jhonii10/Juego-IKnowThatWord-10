@@ -19,7 +19,7 @@ public class Register {
     public ArrayList<String> lecturaDiccionario() {
         ArrayList<String> palabra = new ArrayList<>();
         try {
-            fileReader = new FileReader(PATH_DICCIONARIO);
+            fileReader = new FileReader(PATH_VOCABULARY);
             input = new BufferedReader(fileReader);
             String line;
             while ((line = input.readLine()) != null) {
@@ -51,7 +51,7 @@ public class Register {
     public ArrayList<String> lecturaUsuario() {
         ArrayList<String> usuario = new ArrayList<>();
         try {
-            fileReader = new FileReader(PATH_USUARIO);
+            fileReader = new FileReader(PATH_USER);
             input = new BufferedReader(fileReader);
             String line;
             while ((line = input.readLine()) != null) {
@@ -82,7 +82,7 @@ public class Register {
      */
     public void escribirUsuario(String linea) {
         try {
-            fileWriter = new FileWriter(PATH_USUARIO, true);
+            fileWriter = new FileWriter(PATH_USER, true);
             output = new BufferedWriter(fileWriter);
             output.write(linea);
             output.newLine();
@@ -111,7 +111,7 @@ public class Register {
      */
     public void escribirUsuarioConocido(String linea, boolean conservarTxt) {
         try {
-            fileWriter = new FileWriter(PATH_USUARIO, conservarTxt);
+            fileWriter = new FileWriter(PATH_USER, conservarTxt);
             output = new BufferedWriter(fileWriter);
             output.write(linea);
             output.newLine();
