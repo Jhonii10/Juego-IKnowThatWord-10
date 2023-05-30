@@ -99,7 +99,10 @@ public class ModelIKnowThatWord {
 
     return suNivel;
 }
-    
+
+public void noAnswer() {
+    conteoErrores++;
+} 
 
     
     
