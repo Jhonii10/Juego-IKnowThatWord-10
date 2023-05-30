@@ -53,6 +53,14 @@ public class LevelWords {
      public int getCantidadPalabrasDelNivel() {
         return palabrasDelNivel.size();
     }
+/**
+     * This method gets a word
+     * @param cualPalabra
+     * @return the word
+     */
 
+     public String getUnaPalabra(int cualPalabra){
+        return palabrasDelNivel.get(cualPalabra);
+    }
 
 }
