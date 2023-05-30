@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class LevelWords {
+
+
+
     private Vocabulary vocabulary;
     private ArrayList<String> todasLasPalabras, palabrasDelNivel, palabrasAMemorizar;
 
