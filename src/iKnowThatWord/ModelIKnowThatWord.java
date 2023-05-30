@@ -32,7 +32,7 @@ public class ModelIKnowThatWord {
      * @param nivel
      */
 
-     public void palabrasPorNivel(int nivel) {
+    public void palabrasPorNivel(int nivel) {
         if (nivel >= 1 && nivel <= 10) {
             int palabrasTotales = nivel * 20;
             int palabrasMemorizar = palabrasTotales / 2;
@@ -46,7 +46,7 @@ public class ModelIKnowThatWord {
      * @param word
      */
 
-     public void validarPalabra(String word, boolean respuestaAfirmativa) {
+    public void validarPalabra(String word, boolean respuestaAfirmativa) {
         boolean correcta = false;
         int flag = 0;
         
@@ -77,7 +77,7 @@ public class ModelIKnowThatWord {
       * * This function level ups user and determines if the user wins or loses
        */
       
-     public int subirNivelUsuario(int totalPalabras, int palabrasAcertadas) {
+    public int subirNivelUsuario(int totalPalabras, int palabrasAcertadas) {
         double porcentajeMinimo = 0.7 + (suNivel - 1) * 0.05;
         double porcentajeNivel10 = 1.0;
 
@@ -99,71 +99,88 @@ public class ModelIKnowThatWord {
 
     return suNivel;
 }
-/**
- * this function counts errors
- */
+    /**
+    * this function counts errors
+     */
+    public void noAnswer(){
+        conteoErrores++;
+    } 
+    /**
+    * This function calls the pedirDatos functions of the Model class to request the name of the player in the GUI
+    */
+     public void pedirDatos(){
+        user.pedirDatos();
+        detectNewOrOldUser();
+    }
+    /**
+    * This function saves the information of a new user.
+    */
 
- public void noAnswer(){
-    conteoErrores++;
-} 
-/**
- * This function calls the pedirDatos functions of the Model class to request the name of the player in the GUI
- */
- public void pedirDatos(){
-    user.pedirDatos();
-    detectNewOrOldUser();
-}
-/**
-* This function saves the information of a new user.
-*/
+    public void registrarUsuario(){
+        user.registrarUsuario(suNivel);
+    }
 
- public void registrarUsuario(){
-    user.registrarUsuario(suNivel);
-}
+    /**
+    * This function detects if the player has already played or not
+    */
 
-/**
-* This function detects if the player has already played or not
-*/
+    public void detectNewOrOldUser(){
+        theUser = user.getUsuarioIngresado();
+        suNivel = user.getNivelUsuario();
+    }
 
- public void detectNewOrOldUser(){
-    theUser = user.getUsuarioIngresado();
-    suNivel = user.getNivelUsuario();
-}
+    /**
+    * This function restablish the point conters
+    */
 
-/**
-* This function restablish the point conters
-*/
+    public void restartPoints() {
+        conteoAciertos=0;
+        conteoErrores=0;
+    }
 
- public void restartPoints() {
-    conteoAciertos=0;
-    conteoErrores=0;
-}
+    /**
+    * This method gets the user level.
+    * @return new level
+    */
 
-/**
-* This method gets the user level.
-* @return new level
-*/
+    public int getSuNivel() {
+        return suNivel;
+    }
+    /**
+    * This method returns the number of words that the level
+    * @return the number of words that the level
+    */
 
- public int getSuNivel() {
-    return suNivel;
-}
-/**
-* This method returns the number of words that the level
-* @return the number of words that the level
-*/
+    public int getCantidadPalabrasDelNivel() {
+        return words.getCantidadPalabrasDelNivel();
+    }
 
- public int getCantidadPalabrasDelNivel() {
-    return words.getCantidadPalabrasDelNivel();
-}
+    /**
+    * This method returns the number of the errors that were made
+    * @return the number of the errors
+    */
 
-/**
- * This method returns the number of the errors that were made
-* @return the number of the errors
- */
+    public int getErrores() {
+        return conteoErrores;
+    }
+    /**
+    * This method returns the number of the hits that were made
+    * @return the number of the hits
+    */
 
-public int getErrores() {
-    return conteoErrores;
-}
+    public int getAciertos() {
+        return conteoAciertos;
+    }
+
+
+    /**
+     * This method gets the ganar value
+     * @return ganar
+     */
+
+    public boolean isGanar() {
+        return ganar;
+    }
 
     
 
