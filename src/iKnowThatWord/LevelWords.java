@@ -28,4 +28,22 @@ public class LevelWords {
         return palabrasDelNivel;
     }
 
+/**
+     * This function returns half of the words in the level for the player to memorize
+     * @return the words to memorize
+     */
+
+     public ArrayList<String> palabrasAMemorizar(int cantidadPalabras){
+        Random aleatorio = new Random();
+        palabrasAMemorizar.clear();
+        while (palabrasAMemorizar.size() < cantidadPalabras){
+            String unaPalabra = palabrasDelNivel.get(aleatorio.nextInt(getCantidadPalabrasDelNivel()));
+            if (!palabrasAMemorizar.contains(unaPalabra)){
+                palabrasAMemorizar.add(unaPalabra);
+            }
+        }
+        return palabrasAMemorizar;
+    }
+
+
 }
