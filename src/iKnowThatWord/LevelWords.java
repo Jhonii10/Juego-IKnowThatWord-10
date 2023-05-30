@@ -1,7 +1,7 @@
 package iKnowThatWord;
 
 import java.util.ArrayList;
-import java.util.random;
+import java.util.Random;
 
 public class LevelWords {
     private Vocabulary vocabulary;
@@ -11,7 +11,7 @@ public class LevelWords {
      * Constructor
      */
 
-    public PalabrasDelNivel(){
+    public LevelWords(){
         vocabulary = new Vocabulary();
         todasLasPalabras = vocabulary.getVocabulary();
         palabrasDelNivel = new ArrayList<>();
