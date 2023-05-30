@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Register {
 
-    ppublic static final String PATH_VOCABULARY = "src/files/vocabulary.txt";
+    public static final String PATH_VOCABULARY = "src/files/vocabulary.txt";
     public static final String PATH_USER = "src/files/user.txt";
     private FileReader fileReader;
     private BufferedReader input;
@@ -42,7 +42,7 @@ public class Register {
         return palabra;
     }
 
-    //---------------------------------------------------------------------------------------------------------------------------------------
+    /*----------------------------------------------------------------------------------------------------------------*/
 
     /**
      * This function reads the saved information of the user.
@@ -74,7 +74,7 @@ public class Register {
         return usuario;
     }
 
-    //---------------------------------------------------------------------------------------------------------------------------------------
+    /*----------------------------------------------------------------------------------------------------------------*/
 
     /**
      * This function writes a new user name in usuario.txt
@@ -102,7 +102,7 @@ public class Register {
         }
     }
 
-    //---------------------------------------------------------------------------------------------------------------------------------------
+    /*----------------------------------------------------------------------------------------------------------------*/
 
     /**
      * This function changes the level of an existing user in usuario.txt
@@ -131,7 +131,7 @@ public class Register {
         }
     }
 
-    //---------------------------------------------------------------------------------------------------------------------------------------
+    /*----------------------------------------------------------------------------------------------------------------*/
 
     /**
      * This function writes the user level in usuario.txt
