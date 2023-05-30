@@ -12,7 +12,7 @@ public class Vocabulary {
     */
     public Vocabulary(){
         Register register = new Register();
-        vocabulary = register.lecturaVobulario();
+        vocabulary = register.lecturaDiccionario();
         levelWords = new ArrayList<String>();
     }
 
