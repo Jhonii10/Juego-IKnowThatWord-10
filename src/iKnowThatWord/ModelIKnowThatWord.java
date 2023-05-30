@@ -99,10 +99,29 @@ public class ModelIKnowThatWord {
 
     return suNivel;
 }
-
+/**
+ * this function counts errors
+ */
 public void noAnswer() {
     conteoErrores++;
 } 
+/**
+ * This function calls the pedirDatos functions of the Model class to request the name of the player in the GUI
+ */
+ public void pedirDatos(){
+    Users.pedirDatos();
+    detectNewOrOldUser();
+}
+
+/**
+ * This function saves the information of a new user.
+ */
+
+ public void registrarUsuario(){
+    usuario.registrarUsuario(suNivel);
+   
+}
+
 
     
     
