@@ -139,7 +139,14 @@ public class ModelIKnowThatWord {
     conteoErrores=0;
 }
 
+/**
+* This method gets the user level.
+* @return new level
+*/
 
+ public int getSuNivel() {
+    return suNivel;
+}
     
     
 
