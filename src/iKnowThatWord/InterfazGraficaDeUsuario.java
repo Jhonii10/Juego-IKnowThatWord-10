@@ -105,5 +105,29 @@ public class InterfazGraficaDeUsuario extends JFrame {
         comenzarNivel();
     }
 
+     /**
+     * This function starts a new level
+     */
+
+     public void comenzarNivel() {
+        cualGUI = 1;
+
+        numeroNivel = game.getSuNivel();
+
+        game.palabrasPorNivel(numeroNivel);
+
+        empezarNivel.setVisible(false);
+        escucha.buildGUI1();
+
+        conter = 0;
+        revalidate();
+        repaint();
+        pack();
+
+        timer = new Timer(5000, escucha);
+        escucha.printMemoryWords();
+    }
+
+
     
 }
