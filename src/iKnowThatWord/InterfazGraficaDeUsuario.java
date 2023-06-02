@@ -7,12 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
 /**
- * This class is used for ...
- * @autor Carlos Felipe Montoya carlos.felipe.montoya@correounivalle.edu.co
- * @version v.1.0.0 date:21/03/2023
+ * This class is used for to show game on screen and allow to play.
  */
+
 public class InterfazGraficaDeUsuario extends JFrame {
     private Header headerProject;
     private JPanel panelPalabras, panelEspacioEnBlanco1, panelEspacioEnBlanco2, panelEspacioEnBlanco3,
@@ -50,6 +48,61 @@ public class InterfazGraficaDeUsuario extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(new Color(255, 230, 153));
+    }
+
+     /**
+     * This method is used to set up the default JComponent Configuration,
+     * create Listener and control Objects used for the GUI class
+     *
+     */
+
+     private void initGUI() {
+        //Set up JFrame Container's Layout
+        this.getContentPane().setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        //Create Listener Object and Control Object
+        escucha = new Escucha();
+        game = new ModelIKnowThatWord();
+        //Set up JComponents
+
+        reglasDelNivel = new ImageIcon(getClass().getResource("/resources/reglas.jpeg"));
+        imagenOtroTamanho = reglasDelNivel.getImage().getScaledInstance(410,805,Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+
+        imagenReglas = new JLabel(imagenNuevoTamanho);
+
+        panelInstrucciones = new JPanel();
+        panelInstrucciones.setPreferredSize(new Dimension(410,1005));
+        panelInstrucciones.setBackground(Color.WHITE);
+        panelInstrucciones.setBorder(BorderFactory.createTitledBorder("Instrucciones del juego."));
+        panelInstrucciones.setFont(new Font(Font.DIALOG,Font.BOLD,40));
+        panelInstrucciones.setLayout(new BorderLayout());
+
+        instrucciones = new JTextArea();
+        instrucciones.setBackground(null);
+        instrucciones.setText(INSTRUCCIONES);
+        instrucciones.setLineWrap(true);
+        instrucciones.setPreferredSize(new Dimension(408, 200));
+        instrucciones.setWrapStyleWord(true);
+        instrucciones.setLineWrap(true);
+        instrucciones.setEditable(false);
+
+        palabra = new JLabel("");
+        palabra.setBackground(null);
+        palabra.setAlignmentY(SwingConstants.CENTER);
+        palabra.setHorizontalAlignment(JLabel.CENTER);
+        palabra.setVerticalAlignment(JLabel.CENTER);
+        palabra.setFont(new Font(Font.DIALOG,Font.BOLD,40));
+
+        game.pedirDatos();
+
+
+        numeroNivel = game.getSuNivel();
+        createPalabrasAMemorizarGUI(constraints);
+        createPalabrasAVerificarGUI(constraints);
+        createConclusionGUI(constraints);
+
+        comenzarNivel();
     }
 
     
