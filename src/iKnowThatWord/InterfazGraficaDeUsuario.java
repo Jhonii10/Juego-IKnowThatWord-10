@@ -21,6 +21,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
     private ModelIKnowThatWord game;
 
     private int numeroNivel;
+    private JButton ayuda;
 
     /**
      * Constructor of GUI class
@@ -83,7 +84,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
 
         //constraints
         createHeader(constraints);
-
+        ayuda(constraints);
 
         //empezar nivel
     }
@@ -104,6 +105,25 @@ public class InterfazGraficaDeUsuario extends JFrame {
 
         revalidate();
         repaint();
+    }
+
+    /**
+     * This function creates the ayuda button.
+     * @param constraints
+     */
+
+    public void ayuda(GridBagConstraints constraints) {
+        ayuda = new JButton(" ? ");
+        ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        ayuda.setForeground(Color.white);
+        ayuda.setBackground(new Color(0, 112, 192));
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.FIRST_LINE_START;
+        constraints.anchor = GridBagConstraints.LINE_START;
+
+        add(ayuda, constraints);
     }
 
 
