@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ModelIKnowThatWord {
 
     private LevelWords words;
-    private User user;
+    private Users user;
     private String theUser;
 
     private int conteoErrores, conteoAciertos, suNivel;
@@ -18,10 +18,10 @@ public class ModelIKnowThatWord {
      * */
     public ModelIKnowThatWord(){
         words = new LevelWords();
-        user = new User();
+        //user = new User();
         conteoErrores = 0;
         conteoAciertos = 0;
-        suNivel = user.getNivelUser();
+        //suNivel = user.getNivelUser();
         levelWords = new ArrayList<String>();
         palabrasAMemorizar = new ArrayList<String>();
         ganar = false;
@@ -36,7 +36,7 @@ public class ModelIKnowThatWord {
         if (nivel >= 1 && nivel <= 10) {
             int palabrasTotales = nivel * 20;
             int palabrasMemorizar = palabrasTotales / 2;
-            levelWords = words.getLevelWords(palabrasTotales);
+            //levelWords = words.getLevelWords(palabrasTotales);
             palabrasAMemorizar = words.palabrasAMemorizar(palabrasMemorizar);
         }
     }
