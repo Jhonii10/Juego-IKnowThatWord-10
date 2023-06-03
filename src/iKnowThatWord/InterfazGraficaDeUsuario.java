@@ -15,7 +15,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
     private Header headerProject;
     private JPanel panelPalabras, panelEspacioEnBlanco1, panelEspacioEnBlanco2, panelEspacioEnBlanco3,
                    panelEspacioEnBlanco4, panelEspacioEnBlanco5, panelInstrucciones;
-    private JButton ayuda, salir, botonSI, botonNO, empezarNivel;
+    private JButton ayuda, botonSI, botonNO, empezarNivel;
     private JTextArea nivel, aciertos, errores, instrucciones, panelInfo;
     private Timer timer;
     int numeroNivel, numeroAciertos, numeroErrores, cualGUI, conter = 0;
@@ -159,6 +159,47 @@ public class InterfazGraficaDeUsuario extends JFrame {
         empezarNivel.setVisible(true);
         pack();
     }
+
+    /**
+     * This function creates the GUI that show the words to memorize.
+     * @param constraints
+     */
+
+     public void createPalabrasAMemorizarGUI(GridBagConstraints constraints) {
+
+        createHeader(constraints);
+        createHelpButton(constraints);
+        createLevelCounter(constraints);
+        createExitButton(constraints);
+        createSpace1(constraints);
+        createSpace2(constraints);
+        createPanelPalabrasAMemorizar(constraints);
+        createStartLevelButton(constraints);
+
+        cualGUI = 1;
+
+        revalidate();
+        repaint();
+    }
+
+    /**
+     * This function creates the header.
+     * @param constraints
+     */
+
+     public void createHeader(GridBagConstraints constraints) {
+        headerProject = new Header("I Know that Word", new Color(128, 96, 0));
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 5;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+
+        this.add(headerProject, constraints); //Change this line if you change JFrame Container's Layout
+
+        revalidate();
+        repaint();
+    }
+    
 
 
     
