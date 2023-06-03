@@ -21,7 +21,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
     private ModelIKnowThatWord game;
 
     private int numeroNivel;
-    private JButton ayuda;
+    private JButton ayuda,play;
 
     /**
      * Constructor of GUI class
@@ -85,6 +85,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
         //constraints
         createHeader(constraints);
         ayuda(constraints);
+        createPlayButton(constraints);
 
         //empezar nivel
     }
@@ -117,6 +118,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
         ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         ayuda.setForeground(Color.white);
         ayuda.setBackground(new Color(0, 112, 192));
+        // escuchas
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
@@ -125,6 +127,28 @@ public class InterfazGraficaDeUsuario extends JFrame {
 
         add(ayuda, constraints);
     }
+
+    /**
+     * This function creates the ayuda button.
+     * @param constraints
+     */
+
+    public void createPlayButton(GridBagConstraints constraints) {
+        play = new JButton("Play");
+        play.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        play.setForeground(Color.WHITE);
+        play.setBackground(new Color(192, 0, 0));
+        // escuchas
+        constraints.gridx = 4;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.LINE_END;
+
+        add(play, constraints);
+    }
+
+
 
 
 
