@@ -128,6 +128,38 @@ public class InterfazGraficaDeUsuario extends JFrame {
         escucha.printMemoryWords();
     }
 
+    /**
+     * This function is responsible for displaying the interface in the window where the player indicates wether the
+     * word appeared or not
+     */
+
+     public void verificarPalabras() {
+        cualGUI = 2;
+        timer.stop();
+
+        revalidate();
+        repaint();
+
+        conter = 0;
+        timer = new Timer(7000, escucha);
+        escucha.printAllWords();
+        pack();
+    }
+    /**
+     * This function shows how many successes and errors there were, if the level was passed and the button to pass the level
+     */
+
+     public void terminarNivel() {
+        cualGUI = 3;
+        timer.stop();
+
+        numeroAciertos = game.getAciertos();
+        numeroErrores = game.getErrores();
+
+        empezarNivel.setVisible(true);
+        pack();
+    }
+
 
     
 }
