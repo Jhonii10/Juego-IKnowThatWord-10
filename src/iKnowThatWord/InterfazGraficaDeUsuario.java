@@ -16,7 +16,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
     private JPanel panelInstrucciones;
     private JLabel palabra;
 
-    private JTextArea instrucciones;
+    private JTextArea instrucciones,nivel;
 
     private ModelIKnowThatWord game;
 
@@ -86,6 +86,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
         createHeader(constraints);
         ayuda(constraints);
         createPlayButton(constraints);
+        createLevelCounter(constraints);
 
         //empezar nivel
     }
@@ -126,6 +127,28 @@ public class InterfazGraficaDeUsuario extends JFrame {
         constraints.anchor = GridBagConstraints.LINE_START;
 
         add(ayuda, constraints);
+    }
+
+    /**
+     * This function creates the text area to display the actually level.
+     * @param constraints
+     */
+
+    public void createLevelCounter(GridBagConstraints constraints) {
+        nivel = new JTextArea(1, 2);
+        nivel.setMinimumSize(new Dimension(5, 5));
+        nivel.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        nivel.setText("Nivel: " + numeroNivel);
+        nivel.setBackground(new Color(255, 242, 204));
+        nivel.setEditable(false);
+        nivel.setBorder(BorderFactory.createRaisedBevelBorder());
+
+        constraints.gridx = 2;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        add(nivel, constraints);
     }
 
     /**
