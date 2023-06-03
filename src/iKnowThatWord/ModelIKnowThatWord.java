@@ -18,10 +18,10 @@ public class ModelIKnowThatWord {
      * */
     public ModelIKnowThatWord(){
         words = new LevelWords();
-        //user = new User();
+        user = new Users();
         conteoErrores = 0;
         conteoAciertos = 0;
-        //suNivel = user.getNivelUser();
+        suNivel = user.getNivelUsuario();
         levelWords = new ArrayList<String>();
         palabrasAMemorizar = new ArrayList<String>();
         ganar = false;

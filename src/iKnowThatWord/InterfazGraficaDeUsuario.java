@@ -11,6 +11,16 @@ import java.awt.*;
 public class InterfazGraficaDeUsuario extends JFrame {
 
     private Header headerProject;
+    private ImageIcon reglasDelNivel,imagenNuevoTamaño;
+    private Image imageOtroTamaño;
+    private JPanel panelInstrucciones;
+    private JLabel palabra;
+
+    private JTextArea instrucciones;
+
+    private ModelIKnowThatWord game;
+
+    private int numeroNivel;
 
     /**
      * Constructor of GUI class
@@ -26,6 +36,7 @@ public class InterfazGraficaDeUsuario extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(255,230,153));
     }
 
     /**
@@ -34,12 +45,68 @@ public class InterfazGraficaDeUsuario extends JFrame {
      */
     private void initGUI() {
         //Set up JFrame Container's Layout
-        //Create Listener Object and Control Object
-        //Set up JComponents
-        headerProject = new Header("I Know Than Word.", Color.BLACK);
+        this.getContentPane().setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
 
-        this.add(headerProject,BorderLayout.NORTH); //Change this line if you change JFrame Container's Layout
+        //Create Listener Object and Control Object
+        game = new ModelIKnowThatWord();
+        //Set up JComponents
+        reglasDelNivel = new ImageIcon(getClass().getResource("/resources/reglas.jpeg"));
+        imageOtroTamaño = reglasDelNivel.getImage().getScaledInstance(410,805,Image.SCALE_SMOOTH);
+        imagenNuevoTamaño = new ImageIcon(imageOtroTamaño);
+
+        panelInstrucciones = new JPanel();
+        panelInstrucciones.setPreferredSize(new Dimension(410,1005));
+        panelInstrucciones.setBackground(Color.WHITE);
+        panelInstrucciones.setBorder(BorderFactory.createTitledBorder("Instrucciones del juego."));
+        panelInstrucciones.setFont(new Font(Font.DIALOG,Font.BOLD,40));
+        panelInstrucciones.setLayout(new BorderLayout());
+
+        instrucciones = new JTextArea();
+        instrucciones.setBackground(null);
+        instrucciones.setText("intruciones aqui");
+        instrucciones.setLineWrap(true);
+        instrucciones.setPreferredSize(new Dimension(408, 200));
+        instrucciones.setWrapStyleWord(true);
+        instrucciones.setLineWrap(true);
+        instrucciones.setEditable(false);
+
+        palabra = new JLabel("");
+        palabra.setBackground(null);
+        palabra.setAlignmentY(SwingConstants.CENTER);
+        palabra.setHorizontalAlignment(JLabel.CENTER);
+        palabra.setVerticalAlignment(JLabel.CENTER);
+        palabra.setFont(new Font(Font.DIALOG,Font.BOLD,40));
+
+        game.pedirDatos();
+        numeroNivel = game.getSuNivel();
+
+        //constraints
+        createHeader(constraints);
+
+
+        //empezar nivel
     }
+
+    /**
+     * This function creates the header.
+     * @param constraints
+     */
+
+    public void createHeader(GridBagConstraints constraints) {
+        headerProject = new Header("I Know that Word", new Color(128, 96, 0));
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 5;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+
+        this.add(headerProject, constraints); //Change this line if you change JFrame Container's Layout
+
+        revalidate();
+        repaint();
+    }
+
+
 
     /**
      * Main process of the Java program
