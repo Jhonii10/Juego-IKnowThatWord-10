@@ -13,14 +13,15 @@ public class InterfazGraficaDeUsuario extends JFrame {
     private Header headerProject;
     private ImageIcon reglasDelNivel,imagenNuevoTamaño;
     private Image imageOtroTamaño;
-    private JPanel panelInstrucciones;
+    private JPanel panelInstrucciones,panelPalabras;
     private JLabel palabra;
 
-    private JTextArea instrucciones;
+    private JTextArea instrucciones,nivel;
 
     private ModelIKnowThatWord game;
 
-    private int numeroNivel;
+    private int numeroNivel,cualGUI, conter=0;
+    private JButton ayuda,play,empezarNivel;
 
     /**
      * Constructor of GUI class
@@ -71,8 +72,8 @@ public class InterfazGraficaDeUsuario extends JFrame {
         instrucciones.setLineWrap(true);
         instrucciones.setEditable(false);
 
-        palabra = new JLabel("");
-        palabra.setBackground(null);
+        palabra = new JLabel("palabra");
+        palabra.setBackground(new Color(85, 217, 200));
         palabra.setAlignmentY(SwingConstants.CENTER);
         palabra.setHorizontalAlignment(JLabel.CENTER);
         palabra.setVerticalAlignment(JLabel.CENTER);
@@ -82,10 +83,10 @@ public class InterfazGraficaDeUsuario extends JFrame {
         numeroNivel = game.getSuNivel();
 
         //constraints
-        createHeader(constraints);
-
+        createPalabrasAMemorizarGUI(constraints);
 
         //empezar nivel
+        comenzarNivel();
     }
 
     /**
@@ -106,6 +107,132 @@ public class InterfazGraficaDeUsuario extends JFrame {
         repaint();
     }
 
+    /**
+     * This function creates the ayuda button.
+     * @param constraints
+     */
+
+    public void ayuda(GridBagConstraints constraints) {
+        ayuda = new JButton(" ? ");
+        ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        ayuda.setForeground(Color.white);
+        ayuda.setBackground(new Color(0, 112, 192));
+        // escuchas
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.FIRST_LINE_START;
+        constraints.anchor = GridBagConstraints.LINE_START;
+
+        add(ayuda, constraints);
+    }
+
+    /**
+     * This function creates the text area to display the actually level.
+     * @param constraints
+     */
+
+    public void createLevelCounter(GridBagConstraints constraints) {
+        nivel = new JTextArea(1, 2);
+        nivel.setMinimumSize(new Dimension(5, 5));
+        nivel.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        nivel.setText("Nivel: " + numeroNivel);
+        nivel.setBackground(new Color(255, 242, 204));
+        nivel.setEditable(false);
+        nivel.setBorder(BorderFactory.createRaisedBevelBorder());
+
+        constraints.gridx = 2;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+        add(nivel, constraints);
+    }
+
+    /**
+     * This function creates the ayuda button.
+     * @param constraints
+     */
+
+    public void createPlayButton(GridBagConstraints constraints) {
+        play = new JButton("Play");
+        play.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        play.setForeground(Color.WHITE);
+        play.setBackground(new Color(192, 0, 0));
+        // escuchas
+        constraints.gridx = 4;
+        constraints.gridy = 1;
+        constraints.gridwidth = 1;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.LINE_END;
+
+        add(play, constraints);
+    }
+
+    /**
+     * This function creates the PanelPalabras panel.
+     * @param constraints
+     */
+
+    public void createPanelPalabrasAMemorizar(GridBagConstraints constraints)
+    {
+        panelPalabras = new JPanel();
+        panelPalabras.setPreferredSize(new Dimension(390, 240));
+        panelPalabras.setBorder(BorderFactory.createTitledBorder("Palabras"));
+        panelPalabras.setBackground(new Color(0,0,0,0));
+        panelPalabras.setLayout(new BorderLayout());
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 5;
+        constraints.fill = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        panelPalabras.add(palabra, BorderLayout.CENTER);
+    }
+
+
+
+    /**
+     * This function creates the GUI that show the words to memorize.
+     * @param constraints
+     */
+
+    public void createPalabrasAMemorizarGUI(GridBagConstraints constraints) {
+
+        createHeader(constraints);
+        ayuda(constraints);
+        createLevelCounter(constraints);
+        createPlayButton(constraints);
+        createPanelPalabrasAMemorizar(constraints);
+        // cualGUI = 2;
+
+        revalidate();
+        repaint();
+    }
+
+    /**
+     * This function starts a new level
+     */
+
+    public void comenzarNivel() {
+        cualGUI = 1;
+
+        numeroNivel = game.getSuNivel();
+
+        game.palabrasPorNivel(numeroNivel);
+
+        //empezarNivel.setVisible(false);
+        //escucha.buildGUI1();
+
+        conter = 0;
+        revalidate();
+        repaint();
+        pack();
+
+        //timer = new Timer(5000, escucha);
+        //escucha.printMemoryWords();
+    }
 
 
     /**
