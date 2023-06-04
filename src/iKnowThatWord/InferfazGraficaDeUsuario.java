@@ -46,7 +46,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
         //Default JFrame configuration
         this.setTitle("I Know That Word");
         this.pack();
-        this.setResizable(true);
+        this.setResizable(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
