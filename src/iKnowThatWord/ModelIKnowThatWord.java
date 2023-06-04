@@ -36,7 +36,7 @@ public class ModelIKnowThatWord {
         if (nivel >= 1 && nivel <= 10) {
             int palabrasTotales = nivel * 20;
             int palabrasMemorizar = palabrasTotales / 2;
-            //levelWords = words.getLevelWords(palabrasTotales);
+            levelWords = words.getPalabrasDelNivel(palabrasTotales);
             palabrasAMemorizar = words.palabrasAMemorizar(palabrasMemorizar);
         }
     }
