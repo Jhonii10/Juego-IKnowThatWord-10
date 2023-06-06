@@ -2,10 +2,7 @@ package iKnowThatWord;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 /**
  * This class is used for to show game on screen and allow to play.
@@ -30,7 +27,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
             + "como un error.\n"
             + "\nInicias en el nivel 1 y solo puedes pasar al siguiente nivel si lo logras superar. Aquí están las"
             + " condiciones para poder superar cada nivel: ";
-    private ImageIcon reglasDelNivel, imagenNuevoTamanho;
+    private ImageIcon reglasDelNivel, imagenNuevoTamanho, imageGame;
     private Image imagenOtroTamanho;
     private JLabel imagenReglas, palabra;
     private ModelIKnowThatWord game;
@@ -42,14 +39,40 @@ public class InferfazGraficaDeUsuario extends JFrame {
 
     public InferfazGraficaDeUsuario(){
         initGUI();
-
         //Default JFrame configuration
         this.setTitle("I Know That Word");
-        this.pack();
+        this.setSize(600,400);
+        this.setMinimumSize(new Dimension(600, 400));
         this.setResizable(false);
+        imageGame =new ImageIcon(getClass().getResource("/resources/game.png"));
+
+        // Set the icon image
+        if (imageGame != null) {
+            Image image = imageGame.getImage();
+            int width = 80;
+            int height = 70;
+            Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+            this.setIconImage(scaledImage);
+        }
+
+            // Add a WindowListener to show confirmation dialog on close
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int confirmed = JOptionPane.showConfirmDialog(null, "¿Estás seguro de que quieres salir?",
+                        "Confirmar salida", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (confirmed == JOptionPane.YES_OPTION) {
+                    // Si el usuario confirma la salida, cierra la aplicación
+                    dispose();
+                    System.exit(0);
+                }
+            }
+        });
+
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
         getContentPane().setBackground(new Color(255, 230, 153));
     }
 
@@ -108,6 +131,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
         createConclusionGUI(constraints);
 
         comenzarNivel();
+
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------
@@ -185,7 +209,6 @@ public class InferfazGraficaDeUsuario extends JFrame {
         createHeader(constraints);
         createHelpButton(constraints);
         createLevelCounter(constraints);
-        createExitButton(constraints);
         createPanelPalabrasAMemorizar(constraints);
         createStartLevelButton(constraints);
 
@@ -203,16 +226,18 @@ public class InferfazGraficaDeUsuario extends JFrame {
      */
 
     public void createHeader(GridBagConstraints constraints) {
-        headerProject = new Header("I Know that Word", new Color(128, 96, 0));
+        headerProject = new Header("I KNOW THAT WORD", new Color(159, 152, 152));
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 5;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.anchor = GridBagConstraints.NORTH;
+        constraints.weightx = 1.0;
+        constraints.weighty = 1.0;
 
         this.add(headerProject, constraints); //Change this line if you change JFrame Container's Layout
 
-        revalidate();
-        repaint();
+
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -224,7 +249,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
 
     public void createHelpButton(GridBagConstraints constraints) {
         ayuda = new JButton(" ? ");
-        ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        ayuda.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,18));
         ayuda.setForeground(Color.white);
         ayuda.removeMouseListener(listener);
         ayuda.addMouseListener(listener);
@@ -232,8 +257,9 @@ public class InferfazGraficaDeUsuario extends JFrame {
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.FIRST_LINE_START;
+        constraints.fill = GridBagConstraints.WEST;
         constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.insets = new Insets(10,10,10,10);
 
         add(ayuda, constraints);
     }
@@ -249,42 +275,20 @@ public class InferfazGraficaDeUsuario extends JFrame {
 
     public void createLevelCounter(GridBagConstraints constraints) {
         nivel = new JTextArea(1, 2);
-        nivel.setMinimumSize(new Dimension(5, 5));
-        nivel.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        //nivel.setMinimumSize(new Dimension(24, 12));
+        nivel.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,18));
         nivel.setText("Nivel: " + numeroNivel);
         nivel.setBackground(new Color(255, 242, 204));
         nivel.setEditable(false);
         nivel.setBorder(BorderFactory.createRaisedBevelBorder());
 
-        constraints.gridx = 2;
-        constraints.gridy = 1;
-        constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;
-        add(nivel, constraints);
-    }
-
-    //------------------------------------------------------------------------------------------------------------------------------------------
-
-    /**
-     * This function creates the salir button.
-     * @param constraints
-     */
-
-    public void createExitButton(GridBagConstraints constraints) {
-        salir = new JButton("Salir");
-        salir.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
-        salir.setForeground(Color.WHITE);
-        salir.removeMouseListener(listener);
-        salir.addMouseListener(listener);
-        salir.setBackground(new Color(192, 0, 0));
         constraints.gridx = 4;
         constraints.gridy = 1;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.CENTER;
-        constraints.anchor = GridBagConstraints.LINE_END;
-
-        add(salir, constraints);
+        constraints.fill = GridBagConstraints.WEST;
+        constraints.anchor = GridBagConstraints.EAST;
+        constraints.insets = new Insets(10,10,10,10);
+        add(nivel, constraints);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -305,8 +309,9 @@ public class InferfazGraficaDeUsuario extends JFrame {
         constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 5;
-        constraints.fill = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.CENTER;
+        constraints.insets = new Insets(40,10,10,10);
 
         panelPalabras.add(palabra, BorderLayout.CENTER);
     }
@@ -319,6 +324,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
      */
 
     public void createPalabrasAVerificarGUI(GridBagConstraints constraints) {
+
 
         createPanelPalabrasAVerificar(constraints);
         createSpace1(constraints);
@@ -346,8 +352,9 @@ public class InferfazGraficaDeUsuario extends JFrame {
         constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 5;
-        constraints.fill = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.BOTH;
         constraints.anchor = GridBagConstraints.CENTER;
+        constraints.insets = new Insets(10,10,10,10);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -361,7 +368,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
     {
         botonSI = new JButton("\uF0FC\n");
         botonSI.setPreferredSize(new Dimension(100, 40));
-        botonSI.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 25));
+        botonSI.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,24));
         botonSI.setForeground(new Color(32, 50, 20));
         botonSI.removeMouseListener(listener);
         botonSI.addMouseListener(listener);
@@ -370,7 +377,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
         constraints.gridx = 1;
         constraints.gridy = 4;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.WEST;
         constraints.anchor = GridBagConstraints.CENTER;
     }
 
@@ -391,11 +398,11 @@ public class InferfazGraficaDeUsuario extends JFrame {
         botonNO.addMouseListener(listener);
         botonNO.setBackground(new Color(255, 0, 0));
 
-        constraints.gridx = 3;
+        constraints.gridx = 5;
         constraints.gridy = 4;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.CENTER;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.WEST;
+        constraints.anchor = GridBagConstraints.NONE;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -414,7 +421,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
         constraints.gridy = 5;
         constraints.gridwidth = 5;
         constraints.gridheight = 1;
-        constraints.fill = GridBagConstraints.NONE;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.CENTER;
     }
 
@@ -489,7 +496,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
     public void createSuccessCounter(GridBagConstraints constraints) {
         aciertos = new JTextArea(1, 2);
         aciertos.setMinimumSize(new Dimension(50, 15));
-        aciertos.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        aciertos.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,18));
         aciertos.setText("Aciertos: " + numeroAciertos);
         aciertos.setBackground(new Color(146, 208, 80));
         aciertos.setEditable(false);
@@ -513,7 +520,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
     public void createMistakesCounter(GridBagConstraints constraints) {
         errores = new JTextArea(1, 2);
         errores.setMinimumSize(new Dimension(50, 15));
-        errores.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        errores.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,18));;
         errores.setText("Errores: " + numeroErrores);
         errores.setBackground(new Color(255,0,0));
         errores.setEditable(false);
@@ -539,7 +546,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
         panelInfo.setWrapStyleWord(true);
         panelInfo.setLineWrap(true);
         panelInfo.setPreferredSize(new Dimension(390, 240));
-        panelInfo.setFont(new Font(Font.DIALOG,Font.BOLD,20));
+        panelInfo.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,18));
         panelInfo.setBorder(BorderFactory.createTitledBorder("Información"));
         panelInfo.setBackground(new Color(0,0,0,0));
         panelInfo.setEditable(false);
@@ -560,8 +567,8 @@ public class InferfazGraficaDeUsuario extends JFrame {
      */
 
     public void createStartLevelButton(GridBagConstraints constraints) {
-        empezarNivel = new JButton("~Empezar Nivel~");
-        empezarNivel.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        empezarNivel = new JButton("Iniciar Nivel");
+        empezarNivel.setFont(new Font(Font.DIALOG_INPUT,Font.BOLD,18));;
         empezarNivel.setForeground(Color.black);
         empezarNivel.removeMouseListener(listener);
         empezarNivel.addMouseListener(listener  );
@@ -895,21 +902,21 @@ public class InferfazGraficaDeUsuario extends JFrame {
             if(numeroNivel==10) {
                 if (game.isGanar()) {
                     panelInfo.setText("Has obtenido " + numeroAciertos + " respuestas correctas y " + numeroErrores + " repuestas incorrectas.\n" +
-                            "\n¡Lo hiciste muy bien!\nPuedes volver a intentar el máximo nivel dando click en el botón ~Empezar Nivel~");
+                            "\n¡Lo hiciste muy bien!\nPuedes volver a intentar el máximo nivel dando click en el botón Iniciar Nivel");
                 } else {
                     panelInfo.setText("Has obtenido " + numeroAciertos + " respuestas correctas y " + numeroErrores + " repuestas incorrectas.\n" +
-                            "\nPuedes hacerlo mejor.\nSi quieres ganar el máximo nivel, inténtalo de nuevo dando click en el botón ~Empezar Nivel~");
+                            "\nPuedes hacerlo mejor.\nSi quieres ganar el máximo nivel, inténtalo de nuevo dando click en el botón Iniciar Nivel");
                 }
             }
             else if(game.isGanar())
             {
                 panelInfo.setText("Has obtenido "+numeroAciertos+" respuestas correctas y "+numeroErrores+" repuestas incorrectas.\n" +
-                        "\nEs decir, ¡puedes pasar al próximo nivel! Da click en ~Empezar nivel~");
+                        "\nEs decir, ¡puedes pasar al próximo nivel! Da click en Iniciar Nivel");
             }
             else
             {
                 panelInfo.setText("Has obtenido "+numeroAciertos+" respuestas correctas y "+numeroErrores+" repuestas incorrectas.\n" +
-                        "\nEsto no es suficiente para pasar el nivel. Inténtalo de nuevo dando click en el botón ~Empezar nivel~");
+                        "\nEsto no es suficiente para pasar el nivel. Inténtalo de nuevo dando click en el botón Iniciar Nivel");
             }
         }
     }
