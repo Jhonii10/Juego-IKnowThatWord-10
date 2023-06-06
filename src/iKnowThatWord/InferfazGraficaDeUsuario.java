@@ -73,7 +73,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        getContentPane().setBackground(new Color(255, 230, 153));
+        getContentPane().setBackground(new Color(202, 240, 247));
     }
 
     //---------------------------------------------------------------------------------------------------------------------------------------
