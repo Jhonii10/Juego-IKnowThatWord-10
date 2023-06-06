@@ -226,7 +226,7 @@ public class InferfazGraficaDeUsuario extends JFrame {
      */
 
     public void createHeader(GridBagConstraints constraints) {
-        headerProject = new Header("I KNOW THAT WORD", new Color(159, 152, 152));
+        headerProject = new Header("I KNOW THAT WORD", new Color(13, 132, 184));
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 5;
